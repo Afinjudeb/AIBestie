@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 # CONFIGURATION
 # =============================
 st.set_page_config(page_title="AI Productivity Tracker", layout="centered")
-st.title("AI Productivity & Focus Tracker")
+st.title("My AI Bestie: Productivity & Focus Tracker")
 
 # =============================
 # 1. DAILY JOURNALING + AI FEEDBACK
