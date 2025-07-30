@@ -9,12 +9,12 @@ import matplotlib.pyplot as plt
 # CONFIGURATION
 # =============================
 st.set_page_config(page_title="AI Productivity Tracker", layout="centered")
-st.title("📈 AI Productivity & Focus Tracker")
+st.title("AI Productivity & Focus Tracker")
 
 # =============================
 # 1. DAILY JOURNALING + AI FEEDBACK
 # =============================
-st.header("📝 Daily Reflection")
+st.header("Daily Reflection")
 goals_file = "goals.csv"
 journal_file = "journal_log.csv"
 
@@ -58,7 +58,7 @@ if st.button("Submit Reflection"):
 # =============================
 # 2. MULTIPLE GOALS TRACKING
 # =============================
-st.header("🎯 Goals Tracker")
+st.header(" Goals Tracker")
 
 with st.expander("➕ Add a New Goal"):
     new_goal = st.text_input("Enter goal")
@@ -77,7 +77,7 @@ with st.expander("➕ Add a New Goal"):
 # Display & Update Goals
 try:
     df_goals = pd.read_csv(goals_file)
-    st.subheader("📋 Your Goals")
+    st.subheader(" My Goals")
     for i, row in df_goals.iterrows():
         col1, col2, col3 = st.columns([5, 2, 2])
         with col1:
@@ -95,7 +95,7 @@ except FileNotFoundError:
 # =============================
 # 3. GOAL ACHIEVEMENT VISUALIZATION
 # =============================
-st.header("📊 Goal Progress")
+st.header(" Goal Progress")
 try:
     df = pd.read_csv(goals_file)
     chart_data = df['status'].value_counts()
@@ -109,7 +109,7 @@ except:
 # =============================
 # 4. POMODORO TIMER (Basic)
 # =============================
-st.header("⏱️ Pomodoro Timer")
+st.header("⏱ Pomodoro Timer")
 st.markdown("Use this while working to stay focused.")
 st.markdown("Use external tools like [Pomofocus](https://pomofocus.io/) or set a manual timer while tracking here.")
 
