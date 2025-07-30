@@ -5,15 +5,14 @@ import requests
 import os
 import matplotlib.pyplot as plt
 
-# =============================
+
 # CONFIGURATION
-# =============================
+
 st.set_page_config(page_title="AI Productivity Tracker", layout="centered")
 st.title("My AI Bestie: Productivity & Focus Tracker")
 
-# =============================
+
 # 1. DAILY JOURNALING + AI FEEDBACK
-# =============================
 st.header("Daily Reflection")
 goals_file = "goals.csv"
 journal_file = "journal_log.csv"
@@ -36,7 +35,7 @@ if st.button("Submit Reflection"):
     # OpenRouter API for AI feedback
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
-        "Authorization": "Bearer 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",  # Replace with your actual OpenRouter API key
+        "Authorization": "Bearer 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", 
         "Content-Type": "application/json"
     }
     payload = {
@@ -55,9 +54,9 @@ if st.button("Submit Reflection"):
     except:
         st.warning("AI feedback not available. Check your API or internet.")
 
-# =============================
+
 # 2. MULTIPLE GOALS TRACKING
-# =============================
+
 st.header(" Goals Tracker")
 
 with st.expander("➕ Add a New Goal"):
@@ -92,9 +91,9 @@ try:
 except FileNotFoundError:
     st.info("No goals yet. Add one above!")
 
-# =============================
+
 # 3. GOAL ACHIEVEMENT VISUALIZATION
-# =============================
+
 st.header(" Goal Progress")
 try:
     df = pd.read_csv(goals_file)
@@ -106,14 +105,14 @@ try:
 except:
     st.info("No goal data available for chart.")
 
-# =============================
+
 # 4. POMODORO TIMER (Basic)
-# =============================
+
 st.header("⏱ Pomodoro Timer")
 st.markdown("Use this while working to stay focused.")
 st.markdown("Use external tools like [Pomofocus](https://pomofocus.io/) or set a manual timer while tracking here.")
 
-# =============================
+
 
 #  SIMPLE PROGRESS VISUAL
 st.subheader("Daily Goal Progress")
