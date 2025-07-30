@@ -32,37 +32,29 @@ if st.button("Submit Reflection"):
         pass
     df_reflection.to_csv(journal_file, index=False)
     
-    # Call OpenRouter API
-url = "https://openrouter.ai/api/v1/chat/completions"
-headers = {
-    "Authorization": "Bearer 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
-    "Content-Type": "application/json"
-}
-payload = {
-    "model": "openai/gpt-3.5-turbo",
-    "messages": [
-        {"role": "system", "content": "You are a supportive productivity coach helping the user reflect and improve focus."},
-        {"role": "user", "content": f"Here is my journal: {reflection}. Give me feedback and a suggestion to stay focused tomorrow."}
-    ]
-}
+    # AI FEEDBACK via GROQ
+    st.subheader("💬 AI Feedback")
 
-try:
-    response = requests.post(url, headers=headers, json=payload, timeout=10)
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    headers = {
+        "Authorization": "Bearer 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",  
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": "llama3-8b-8192",
+        "messages": [
+            {"role": "system", "content": "You're a helpful productivity coach giving warm, honest daily feedback."},
+            {"role": "user", "content": f"My reflection today: {reflection}. What can I do better tomorrow?"}
+        ]
+    }
 
-    if response.status_code == 200:
-        result = response.json()
-        feedback = result['choices'][0]['message']['content']
-    else:
-        feedback = (
-            " feedback: Try identifying what caused your distractions today and reduce exposure to it tomorrow. "
-            "Also, break your goal into smaller tasks and track your progress throughout the day."
-        )
-
-except Exception as e:
-    feedback = (
-        "feedback: Great effort! You might want to take short breaks every 45 minutes to stay focused. "
-        "Set a specific target for tomorrow and celebrate small wins!"
-    )
+    try:
+        res = requests.post(url, headers=headers, json=payload)
+        res.raise_for_status()
+        feedback = res.json()["choices"][0]["message"]["content"]
+        st.info(feedback)
+    except:
+        st.error("⚠️ AI feedback not available. Check your API key or internet.")
 
 st.subheader("💡 AI Feedback:")
 st.markdown(feedback)
