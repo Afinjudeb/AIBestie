@@ -33,7 +33,7 @@ if st.button("Submit Reflection"):
     df_reflection.to_csv(journal_file, index=False)
     
     # AI FEEDBACK via GROQ
-    st.subheader("💬 AI Feedback")
+    st.subheader(" AI Feedback")
 
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
@@ -56,8 +56,7 @@ if st.button("Submit Reflection"):
     except:
         st.error("⚠️ AI feedback not available. Check your API key or internet.")
 
-st.subheader("💡 AI Feedback:")
-st.markdown(feedback)
+
 
 # 2. MULTIPLE GOALS TRACKING
 
